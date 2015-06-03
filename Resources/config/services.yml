@@ -1,0 +1,23 @@
+parameters:
+    chrisyue_dark_portal.security.authentication.provider.class: Chrisyue\Bundle\DarkPortalBundle\Security\Core\Authentication\Provider\OAuthCodeProvider
+    chrisyue_dark_portal.security.authentication.listener.class: Chrisyue\Bundle\DarkPortalBundle\Security\Http\Firewall\OAuthCodeListener
+    chrisyue_dark_portal.security.user.provider.class: Chrisyue\Bundle\DarkPortalBundle\Security\Core\User\OAuthCodeUserProvider
+
+services:
+    chrisyue_dark_portal.security.authentication.provider:
+        class: %chrisyue_dark_portal.security.authentication.provider.class%
+        arguments:
+            - ~ # user provider
+            - ~ # options
+            - ~ # provider key
+
+    chrisyue_dark_portal.security.authentication.listener:
+        class: %chrisyue_dark_portal.security.authentication.listener.class%
+        arguments:
+            - @security.token_storage
+            - @security.authentication.manager
+            - ~ # options
+            - ~ # provider key
+
+    chrisyue_dark_portal.security.user.provider:
+        class: %chrisyue_dark_portal.security.user.provider.class%

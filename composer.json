@@ -1,0 +1,30 @@
+{
+    "name": "chrisyue/dark-portal-bundle",
+    "description": "",
+    "keywords": ["oauth"],
+    "homepage": "http://chrisyue.com/",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Yue",
+            "email": "blizzchris@gmail.com",
+            "homepage": "http://chrisyue.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.9",
+        "symfony/symfony": ">=2.6",
+        "guzzlehttp/guzzle": "~5.2"
+    },
+    "autoload": {
+        "psr-0": { "Chrisyue\\Bundle\\DarkPortalBundle\\": "" }
+    },
+    "target-dir": "Chrisyue/Bundle/DarkPortalBundle",
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
