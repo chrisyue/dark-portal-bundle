@@ -23,7 +23,7 @@ class OAuthCodeFactory implements SecurityFactoryInterface
             ->replaceArgument(2, $config)
             ->replaceArgument(3, $id);
 
-        return [$providerId, $listenerId, $defaultEntryPoint];
+        return array($providerId, $listenerId, $defaultEntryPoint);
     }
 
     public function getPosition()

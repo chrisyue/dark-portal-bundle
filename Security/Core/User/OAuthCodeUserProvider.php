@@ -24,6 +24,6 @@ class OAuthCodeUserProvider implements UserProviderInterface
 
     public function supportsClass($class)
     {
-        return 'AppBundle\\Security\\Core\\User\\OAuthCodeUser' === $class;
+        return 'Chrisyue\\Bundle\\DarkPortalBundle\\Security\\Core\\User\\OAuthCodeUser' === $class;
     }
 }

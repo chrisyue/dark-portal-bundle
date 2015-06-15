@@ -27,10 +27,10 @@ if (!empty($_GET['code'])) {
     header(sprintf('Location: %s', $redirectUri)); die();
 }
 
-$hosts = [
+$hosts = array(
     'wechat.xxx.com',
     'weixin.xxx.com',
-];
+);
 
 $parts = parse_url($_GET['redirect_uri']);
 
@@ -40,14 +40,14 @@ if (!in_array($parts['host'], $hosts)) {
 
 $_SESSION['redirect_uri'] = $_GET['redirect_uri'];
 
-$queries = [
+$queries = array(
     'appid' => 'wxdcba7b97117e6d0a',
     // temporary solution, not reliable (no scheme and uri check)
     'redirect_uri' => sprintf('http://%s', $_SERVER['HTTP_HOST']),
     'response_type' => 'code',
     'scope' => empty($_GET['scope']) ? 'snsapi_base' : $_GET['scope'],
-];
+);
 
-$urlGetCode = 'https://open.weixin.qq.com/connect/oauth2/authorize?'.http_build_query($queries).'#wechat_redirect';
+$urlGetCode = sprintf('https://open.weixin.qq.com/connect/oauth2/authorize?%s#wechat_redirect', http_build_query($queries));
 
 header(sprintf('Location: %s', $urlGetCode));

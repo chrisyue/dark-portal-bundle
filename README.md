@@ -15,6 +15,12 @@ OAuth 2.0 登录助手
 使用方式
 --------
 
+```
+$ composer require chrisyue/dark-portal-bundle
+```
+
+然后在`AppKernel`里开启此Bundle你懂的
+
 比如wechat.xxx.com和weixin.xxx.com都需要使用同一个微信公众账号登录，公众账号只能设置一个redirect_uri的域名。
 
 将一台服务器设置为专门的获取code的服务器，比如：oauth-code.xxx.com
