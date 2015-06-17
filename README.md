@@ -21,6 +21,24 @@ $ composer require chrisyue/dark-portal-bundle
 
 然后在`AppKernel`里开启此Bundle你懂的
 
+设置security.yml文件：
+
+```
+providers:
+    oauth:
+        id: chrisyue_dark_portal.security.user.provider
+
+firewalls:
+    secured_area:
+        pattern: ^/
+        oauth_code:
+            appid: %your_appid%
+            secret: %your_secret%
+            scope: %your_scope%
+            code_endpoint: %your_code_endpoint% # 不着急，此字段意义见后面
+        provider: oauth
+```
+
 比如wechat.xxx.com和weixin.xxx.com都需要使用同一个微信公众账号登录，公众账号只能设置一个redirect_uri的域名。
 
 将一台服务器设置为专门的获取code的服务器，比如：oauth-code.xxx.com
@@ -33,6 +51,8 @@ $hosts = [
     'weixin.xxx.com',
 ];
 ```
+
+假如部署后此脚本路径为`http://oauth-code.xxx.com/get-code.php`，那么`your_code_endpoint`参数的值就是它。
 
 TODO
 ----
