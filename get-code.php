@@ -41,9 +41,8 @@ if (!in_array($parts['host'], $hosts)) {
 $_SESSION['redirect_uri'] = $_GET['redirect_uri'];
 
 $queries = array(
-    'appid' => 'wxdcba7b97117e6d0a',
-    // temporary solution, not reliable (no scheme and uri check)
-    'redirect_uri' => sprintf('http://%s', $_SERVER['HTTP_HOST']),
+    'appid' => 'wx__________', // change it
+    'redirect_uri' => sprintf('http%s://%s%s', isset($_SERVER['HTTPS']) ? 's' : '', $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']),
     'response_type' => 'code',
     'scope' => empty($_GET['scope']) ? 'snsapi_base' : $_GET['scope'],
 );
