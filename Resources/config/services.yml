@@ -21,3 +21,5 @@ services:
 
     chrisyue_dark_portal.security.user.provider:
         class: %chrisyue_dark_portal.security.user.provider.class%
+        arguments: 
+            - ~ # options

@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class OAuthCodeProvider implements AuthenticationProviderInterface
 {
-    const AUTH_URL_FORMAT = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code';
+    const URL_AUTH_FORMAT = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code';
 
     private $guzzle;
     private $options;
@@ -39,7 +39,7 @@ class OAuthCodeProvider implements AuthenticationProviderInterface
         $appid = $this->options['appid'];
         $secret = $this->options['secret'];
         $code = $token->getCredentials();
-        $url = sprintf(self::AUTH_URL_FORMAT, $appid, $secret, $code);
+        $url = sprintf(self::URL_AUTH_FORMAT, $appid, $secret, $code);
 
         try {
             $json = $this->guzzle->get($url)->json();
@@ -51,8 +51,7 @@ class OAuthCodeProvider implements AuthenticationProviderInterface
             throw new AuthenticationException($json['errmsg']);
         }
 
-        $openid = $json['openid'];
-        $user = $this->userProvider->loadUserByUsername($openid);
+        $user = $this->userProvider->loadUserByCredentials($json, $this->options['scope'] === 'snsapi_userinfo');
 
         return new OAuthCodeToken($user, null, $this->providerKey, $user->getRoles());
     }

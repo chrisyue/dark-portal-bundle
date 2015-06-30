@@ -13,6 +13,7 @@ class OAuthCodeFactory implements SecurityFactoryInterface
     public function create(ContainerBuilder $container, $id, $config, $userProvider, $defaultEntryPoint)
     {
         $providerId = 'security.authentication.provider.oauth_code.'.$id;
+
         $container->setDefinition($providerId, new DefinitionDecorator('chrisyue_dark_portal.security.authentication.provider'))
             ->replaceArgument(0, new Reference($userProvider))
             ->replaceArgument(1, $config)
