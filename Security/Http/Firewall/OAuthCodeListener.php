@@ -30,13 +30,16 @@ class OAuthCodeListener implements ListenerInterface
 
     public function handle(GetResponseEvent $event)
     {
-        $request = $event->getRequest();
+        if (!$event->isMasterRequest()) {
+            return;
+        }
 
         $token = $this->tokenStorage->getToken();
         if ($token instanceof OAuthCodeToken && $token->isAuthenticated()) {
             return;
         }
 
+        $request = $event->getRequest();
         if ($request->query->has('code')) {
             $code = $request->query->get('code');
             $token = new OAuthCodeToken('', $code, $this->providerKey);
