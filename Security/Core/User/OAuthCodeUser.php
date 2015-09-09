@@ -70,8 +70,12 @@ class OAuthCodeUser implements UserInterface
         return $this;
     }
 
-    public function getAttribute($key)
+    public function getAttribute($key, $default = null)
     {
+        if (!isset($this->attributes[$key])) {
+            return $default;
+        }
+
         return $this->attributes[$key];
     }
 }
