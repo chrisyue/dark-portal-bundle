@@ -3,7 +3,7 @@
     "description": "",
     "keywords": ["oauth"],
     "homepage": "http://chrisyue.com/",
-    "type": "library",
+    "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
         {
