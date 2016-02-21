@@ -16,7 +16,7 @@ OAuth 2.0 登录助手
 --------
 
 ```
-$ composer require chrisyue/dark-portal-bundle
+$ composer require chrisyue/dark-portal-bundle:dev-master
 ```
 
 然后在`AppKernel`里开启此Bundle你懂的
