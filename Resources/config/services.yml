@@ -14,12 +14,12 @@ services:
     chrisyue_dark_portal.security.authentication.listener:
         class: %chrisyue_dark_portal.security.authentication.listener.class%
         arguments:
-            - @security.token_storage
-            - @security.authentication.manager
+            - '@security.token_storage'
+            - '@security.authentication.manager'
             - ~ # options
             - ~ # provider key
 
     chrisyue_dark_portal.security.user.provider:
         class: %chrisyue_dark_portal.security.user.provider.class%
-        arguments: 
+        arguments:
             - ~ # options
