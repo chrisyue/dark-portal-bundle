@@ -28,7 +28,7 @@ class OAuthCodeUserProvider implements UserProviderInterface
 
         if ($shouldLoadUserInfo) {
             $url = sprintf(self::URL_USER_INFO, $accessToken, $openid);
-            $json = $this->guzzle->get($url)->json();
+            $json = json_decode($this->guzzle->get($url)->getBody(), true);
 
             $user->setAttributes($json);
         }
