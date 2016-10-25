@@ -42,7 +42,7 @@ class OAuthCodeProvider implements AuthenticationProviderInterface
         $url = sprintf(self::URL_AUTH_FORMAT, $appid, $secret, $code);
 
         try {
-            $json = $this->guzzle->get($url)->json();
+            $json = json_decode($this->guzzle->get($url)->getBody(), true);
         } catch (ClientException $ex) {
             throw new AuthenticationException('OAuth code is not valid');
         }
